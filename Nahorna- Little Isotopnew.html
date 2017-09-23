@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Isotop</title>
+	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+	<script src="jquery-ui.js"></script>
+	<!--link rel="stylesheet" href="jquery-ui.css">
+	<!-script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script-->
+	<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+	<meta charset="utf-8">
+	<style type="text/css">
+
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		font-size: 14px;
+		/*outline: 1px solid #444;*/
+	}
+
+	body {
+		background-color: #8b4726;
+		font-family: 'Lato', sans-serif;
+		/*color: #212121;*/
+		min-width: 900px;
+		max-width: 1360px;
+		margin: 0 auto;
+	}
+
+/*пошук*/
+
+
+	span.highlight {
+background-color: #C6D9DB; cursor: pointer; }
+
+span.splink {
+color: #00ffff; cursor: pointer; 
+
+}
+
+
+/*низ сайту*/
+.block-for-down {
+	width: 100%;
+	height: 150px;
+	text-align: center;
+	
+	position: relative;
+    background-color: #8b5742;
+}
+/*загальний вигляд карток*/
+	.wraper {
+		width: 70%;
+		text-align: center;
+		margin: 0 15%;
+		position: relative;
+	}
+	/*загальний фон*/
+	.bg {
+		width: 100%;
+		min-height: 1040px;
+		background: url("icons/bookdown1.jpg") no-repeat;
+		background-size: 100% auto;
+		position: relative;
+	}
+
+/*розташування тексту в формах*/
+	#admin {
+		display: none;
+		padding: 5px;
+		text-align: left;
+		
+	}
+
+	#cart_create, #slide_create, #enter_form, #mail {
+		display: none;
+		padding: 5px;
+		text-align: center;
+		
+	}
+
+	/*колір форм*/
+
+    #enter_form, #cart_create, #slide_create {
+    	background-color: #ddd;
+    }
+
+
+
+/*вигляд карток*/
+
+	.cart_img_prev {
+		height: 120px;
+		margin-top: 10px;
+		cursor: -webkit-zoom-in;
+	}
+	p {
+		margin:8px;
+	}
+
+	span {
+		font-size: 8px;
+	}
+/*боковий фільтр*/
+	ol li {
+		margin: 0px 5px 0px 22px;
+	    text-align: center;
+	    padding: 1px 0;
+	}
+/*фільтри*/
+	#flavor-nav, #nextfacturers {
+		text-align: center;
+		padding: 10px 0;
+		width: 100%;
+	}
+
+
+/*радіус угла */
+	 .cart, #basket, #enter_button, .half_button, input, label, canvas, fieldset, form, textarea, select, button {
+		border-radius: 7px;
+	}
+
+/*вигляд кнопок фільтрів*/
+
+	#flavor-nav a, #nextfacturers a, #enter_button {
+  position: relative;
+  display: inline-block;
+  color: #8b475d;
+  font-weight: bold;
+  text-decoration: none;
+  text-shadow: rgba(255,255,255,.5) 1px 1px, rgba(100,100,100,.3) 3px 3px 3px;
+  user-select: none;
+  padding: 1em 1em;
+  outline: none;
+  border-radius: 5px / 100%;
+  background-image:
+   linear-gradient(48deg, rgba(250,255,255,.0) 10%, rgba(255,255,255,.8), rgba(255,255,255,.0) 10%),
+   linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0) 20%, rgba(255,255,255,0) 90%, rgba(255,255,255,.3)),
+   linear-gradient(to right, rgba(125,125,125,1), rgba(255,255,255,.9) 45%, rgba(125,125,125,.5)),
+   linear-gradient(to right, rgba(125,125,125,1), rgba(255,255,255,.9) 45%, rgba(125,125,125,.5)),
+   linear-gradient(to right, rgba(223,190,170,1), rgba(255,255,255,.9) 45%, rgba(223,190,170,.5)),
+   linear-gradient(to right, rgba(223,190,170,1), rgba(255,255,255,.9) 45%, rgba(223,190,170,.5));
+  background-repeat: repeat;
+  background-size: 100% 100%, auto, 100% 5px, 100% 2px, 100% 1px, 100% 1px;
+  background-position: 200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
+  box-shadow: rgba(0,0,0,.5) 3px 10px 10px -10px;
+}
+
+/*колір наведення на текст кнопок фільтру*/
+	#flavor-nav a:hover, #nextfacturers a:hover {
+		color: navy;
+	}
+/*колір вибраного тексту на кнопках*/
+	 #flavor-nav a.current, #nextfacturers a.currentfactur, #enter_button:hover {
+		
+		color: darkred;
+		
+	}
+/*боковий фільтр*/
+
+	#nextfacturers {
+		width: 14%;
+		float: left;	
+		margin: 5px;
+	}
+
+	#nextfacturers a {
+		display: block;
+		margin-bottom: 10px;
+	}
+
+
+	/*розмір корзини і входу*/
+	
+	#basket, #enter_button {
+		width: 14%;
+	}
+
+
+	/*розташування корзини*/
+
+	.default {
+		position: absolute;
+    	right: 1%;
+    	top: 80px;
+	}
+
+	.default_adm {
+		position: absolute;
+    	right: 1%;
+    	top: 100px;
+	}
+
+	/*фіксація корзини*/
+
+	.fixed {
+		position:fixed;
+		right: 1%;
+    	top: 75px;
+	}
+
+/*корзина*/
+
+
+    #basket h2 {
+    	background: url(icons/cart.png) no-repeat 130px;
+    	background-size: 60px 60px;
+    	padding: 15px 15px 15px 65px;
+    }
+
+    .basket_elements {
+    	float: left;
+    	width: 300px;
+    }  
+/*кружечек у корзині*/
+    #citem {
+	    width: 20px;
+	    height: 20px;
+	    border: 1px solid #f77;
+	    border-radius: 9px;
+	    background-color: #f77;
+	    position: absolute;
+	    top: 20px;
+	    right: 36px;
+	    text-align: center
+    }
+
+    /*кнопка видалити*/
+
+   img[title='delete'] {
+    	width: 20px;
+    	cursor: default;
+  	    margin: 0 auto;
+    }
+
+
+/*кнопка входу*/
+	#enter_button {
+		float: right;
+		margin: 15px 1% 0 0;
+	}
+
+
+/*прозорість карток*/
+	.cart, #basket {
+		background-color: rgba(255,255,255, 0.7);
+	}
+
+/*самі картки*/
+	.cart {
+		float: left;
+		width: 31.3%;
+		margin: 0 2% 2% 0;
+		/*transition: all .5s;*/
+		/*cursor: -webkit-grab;*/
+	}
+
+/*короткий опис картки*/
+	.short_description {
+		height: 6em;
+		overflow: hidden;
+	}
+
+
+	/*вигляд картки*/
+	.cart_review {
+		float: none;
+		width: 750px;		
+		position: absolute;
+		background-color: #d2b48c;
+		/*зум вкл*/
+      	z-index: 800;
+      	margin: 0;
+      	overflow: visible;
+      	text-align: center;
+        cursor: default;
+	}
+/*регулировка зума*/
+	.cart_review img:first-child {
+		width: 250px;
+		height: auto;
+		cursor: default;
+	}
+
+/*відміна дії відкриття*/
+	#overlay, #overlay_bg {
+		position:fixed; 
+	    top:0;
+	    bottom: 0;
+	    left:0;
+	    right: 0;
+	}
+
+/*пoдлoжкa дoлжнa быть выше слoев элементoв сaйтa, нo ниже слoя мoдaльнoгo oкнa */
+
+	#overlay {
+		z-index:4444;  
+		overflow: auto;
+		display:none;
+	}
+
+	#overlay_bg {
+		background-color: rgba(0,0,0, 0.8);
+		cursor:pointer;
+	}
+
+
+
+/*форма входу*/
+   form label {
+    	display: inline-block;
+    	position: relative;
+    	top: 30px;
+    	background-color: #eee;
+    	padding: 3px;
+    }
+
+    form input, form button, form textarea, form select {
+     	display: block;
+     	width: 100%;
+     	height: 40px;
+     	border: 4px solid #eee;
+     	box-shadow: inset 0 1px 3px rgba(204,204,204,0.95);
+    }
+
+    form textarea, form select {
+    padding-left: 100px;
+    }
+
+    form button {
+    	margin: 25px auto;
+    }
+
+
+/*розмір полей*/
+
+    .half_button {
+    	width: 48%;
+    	display: inline-block;
+    }
+
+  
+/*слайдер*/
+
+
+body {
+    margin: 0;
+    padding: 0;
+
+}
+
+#block-for-slider {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 5px;
+}
+
+#viewport {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    text-align: center;
+}
+
+#slidewrapper {
+    position: relative;
+    width: calc(100% * 4);
+    -webkit-transition: 1s;
+    -o-transition: 1s;
+    transition: 1s;
+    -webkit-transition-timing-function: cubic-bezier(.67,.01,.23,1);
+    -o-transition-timing-function: cubic-bezier(.67,.01,.23,1);
+    transition-timing-function: cubic-bezier(.67,.01,.23,1);
+}
+
+#slidewrapper, #slidewrapper ul, #slidewrapper li {
+    margin: 0;
+    padding: 0;
+}
+
+.slide {
+    width: calc(100%/4);
+    list-style: none;
+    display: inline;
+    float: left;
+}
+
+.slide-img {
+    width: 100%;
+   height: 400px;
+}
+   
+
+#prev-btn, #next-btn {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #8b4726;
+    border-radius: 50%;
+    top: calc(50% - 25px);
+}
+
+#prev-btn:hover, #next-btn:hover {
+    cursor: pointer;
+}
+
+#prev-btn {
+    left: 20px;
+}
+
+#next-btn {
+    right: 20px;
+}
+
+#nav-btns {
+    position: absolute;
+    width: 100%;
+    bottom: 20px;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.slide-nav-btn {
+    position: relative;
+    display: inline-block;
+    list-style: none;
+    width: 10px;
+    height: 10px;
+    background-color: #d2b48c;
+    border-radius: 50%;
+    margin: 3px;
+}
+
+.slide-nav-btn:hover {
+    cursor: pointer;
+}
+
+#block-for-slider {
+    width: 100%;
+}
+
+
+	</style>
+
+</head>
+
+
+
+<body>
+
+<!-- слайдер -->
+
+<div id="block-for-slider">
+        <div id="viewport">
+            <ul id="slidewrapper">
+                <li class="slide"><img src="icons/s1.jpg" alt="1" class="slide-img" ></li>
+                <li class="slide"><img src="icons/s9.jpg" alt="2" class="slide-img"></li>
+                <li class="slide"><img src="icons/s12.jpg" alt="3" class="slide-img" ></li>
+                <li class="slide"><img src="icons/s2.jpg" alt="4" class="slide-img"></li>
+            </ul>
+
+            <div id="prev-next-btns">
+                <div id="prev-btn"></div>
+                <div id="next-btn"></div>
+            </div>
+
+            <ul id="nav-btns">
+                <li class="slide-nav-btn"></li>
+                <li class="slide-nav-btn"></li>
+                <li class="slide-nav-btn"></li>
+                <li class="slide-nav-btn"></li>
+            </ul>
+        </div>
+    </div>
+
+ 
+
+<div id='overlay'>
+	<div id='overlay_bg'></div>
+</div>
+
+
+<div class="bg">
+
+		<div id="admin">	
+			<label for="metod">Тип події</label>
+				<select id="metod">
+					<option value="slide">slide</option>
+					<option value="hide">hide / show</option>
+					<option value="fade">fade</option>
+					
+				</select>
+
+<label for="speed">Швидкість</label>
+				<select id="speed">
+					<datalist id="speed_options">
+					<option>fast</option>
+					<option>slow</option>
+					</datalist> 
+				</select>
+
+
+			<button id="add_cart_button" value="">Добавити новий товар</button>
+			<button id="add_slide_button" class="modal" value="">Добавити слайд</button>
+		</div>
+
+		
+
+
+<!-- для бокового фільтру -->
+<div id="nextfacturers" class="all_nextfacturers  ukr another new small_price light_price medium_price upper_price big_price ">
+		<a rel="all_nextfacturers" class="currentfactur">Параметри пошуку</a>
+		<h1><dt class="country" >Мова видання</dt>
+	<dd class="country">
+	   <ol><li> <a rel="ukr">Українське видання</a></li>
+		<li><a rel="another">Зарубіжне видання</a></li></ol>
+<dt class="new">Новинки</dt>
+	<dd class="new">
+	   <ol><li> <a rel="new">2017</a></li>
+		</ol>
+<dt class="price">Ціна</dt>
+	<dd class="price">
+	   <ol><li> <a rel="small_price">0-100 грн</li></a>
+	   <li> <a rel="light_price">101-200 грн</li></a>
+	   <li> <a rel="medium_price">201-300 грн</li></a>
+	   <li> <a rel="upper_price">301-400 грн</li></a>
+	   <li> <a rel="big_price">Від 401  і більше грн</li></a>
+		</ol>
+</div>
+
+
+	<button id="enter_button" class="modal" value="">Авторизація</button>
+
+
+
+<!-- основна фільтрація -->
+	<div id="flavor-nav" class="all classic prose detective fantasy novel">
+            <a rel="all" class="current">Увесь каталог</a>
+            <a rel="classic">Класична література</a>
+            <a rel="prose">Проза</a>
+            <a rel="detective">Детективи та пригоди</a>
+            <a rel="fantasy">Фантастика</a>
+             <a rel="novel">Роман</a>
+		</div>
+	
+<!-- форма авторизації -->
+	   <form id="enter_form">
+        <fieldset>
+        	<legend>Форма автризації</legend>
+        	
+        		<button type="button" value="" id="enter_quick" class="half_button">Увійти </button>
+        	</p>
+
+        </fieldset>
+        </form>
+
+<!-- кошик -->
+    <div id="basket" class="default">
+		<h2 class="">Кошик<span class="count" id="citem">0</span></h2>
+
+		<div class="">
+		    <ol>
+		    </ol>
+		    <p id="order_price">Сума до сплати: <b></b></p>
+		    <button id="order">Купити</button>
+		</div>
+		
+	</div>
+
+	<form id="mail">
+		<p class="input_container">
+			<label for="">Вкажіть e-mail</label>
+			<input type="email" name="email" id="" value="" />
+		</p>
+    	<p class="input_container">
+    		<a href="" id='send_mail'>Надіслати</a>
+	</form>
+<!-- створення нової картки -->
+
+<div class="wraper">
+
+		<form id="cart_create">
+	        <fieldset>
+	        	<legend>Форма додавання нового товару</legend>
+	        	<p class="input_container">
+	        		<label for="product_group">Оберіть розділ: </label>
+					<select name="product_group" id="product_group">
+						<option value="classic">Класична література</option>
+						<option value="prose">Проза</option>
+						<option value="detective">Детективи та пригоди</option>
+						<option value="fantasy">Фантастика</option>
+						<option value="novel">Роман</option>
+					</select>
+				</p>
+	        	<p class="input_container">
+	        		<label for="product_image">Зображення: </label>
+					<input type="text" name="product_image" id="" value="" />
+				</p>
+	        	<p class="input_container">
+	        		<label for="product_name">Назва книги: </label>
+					<input type="text" name="product_name" id="" value="" />
+				</p>
+	        	<p class="input_container">
+	        		<label for="product_lastname">Автор книги: </label>
+					<input type="product_lastname" name="product_lastname" id="" value="" />
+				</p>
+				<p class="input_container">
+					<label for="product_description">Короткий зміст: </label>
+					<textarea type="text" name="product_description" id='' value="" placeholder="Введіть текст..." /></textarea>
+				</p>
+				<p class="input_container">
+					<label for="product_country">Мова видання: </label>
+					<input type="text" name="product_country" id="" value="" />
+				</p>
+				<p class="input_container">
+					<label for="product_binding">Палітурка </label>
+					<input type="text" name="product_binding" id="" value="" />
+				</p>
+				<p class="input_container">
+					<label for="product_group">Рік видання </label>
+					<input type="text" name="product_group" id="" value="" />
+				</p>
+				<p class="input_container">
+					<label for="product_pages">Кількість сторінок </label>
+					<input type="text" name="product_pages" id="" value="" />
+				</p>
+				<p class="input_container">
+					<label for="product_price">Ціна: </label>
+					<input type="text" name="product_price" id="" value="" />
+				</p>
+
+	        	<p class="input_container">
+	        		<button type="submit" id='add_cart' value="" class="half_button">Добавити</button>
+	        		<button type="reset" id='cancel' value="Очистить" class="half_button">Очистити</button>
+	        	</p>
+
+	        </fieldset>
+        </form>
+
+	
+	<!-- додавання нового слайду -->
+
+		<form id='slide_create'>
+		 <fieldset>
+        	<legend>Форма додавання нового слайду</legend>
+			<p class="input_container">
+				<label for="file">Завантажте нове зображення: </label>
+				<input type="text" id="file" accept="icons/jpeg,icons/jpg, icons/png" value="" />
+			</p>
+			<p class="input_container">
+				<button type="submit" id='add_slide' value="">Добавити</button>
+			</p>
+		 </fieldset>
+		</form>
+
+<!-- пошук -->
+
+
+ <input id="spterm"  type="text" name="spterm" placeholder="Що знайти?"><br />
+<div id="spresult">&nbsp;</div>
+    
+<div id="content"> 
+
+ <!-- база карток -->
+
+	<div id="all-flavors">
+
+		<div class=" cart all classic  all_nextfacturers ukr small_price ">
+			<!-- <img title='delete' align="right"> -->
+			<img class="cart_img_prev" src="icons/1.jpg" >
+			<h4>По цей бік раю</h4>
+			<p class="lastname"> <b>Френсіс Скотт Кей Фіцджеральд</b></p>
+			<p class="short_description">
+				“По цей бік раю” — перший великий твір. Чарівний юнак, сповнений світлих мрій і надій на блискучі перспективи на початку роману, втративши друзів на війні, зазнавши трагедії в коханні, лишившись без засобів до існування, опиняється “по цей бік раю” і намагається знайти свій шлях у житті. Це доля не тільки головного героя твору, але й самого автора і його покоління, обпаленого Першою світовою війною.
+			</p>
+			<p class="country">Мова видання: <b>Українська</b></p>
+			<p class="binding">Палітурка: <b>Тверда</b></p>
+			<p class="group">Рік видання: <b>2009</b></p>
+			<p class="pages">Кількість сторінок: <b>302</b></p>
+			<p class="price">Ціна: <b>65 грн</b></p>
+			<img title='delete' align="right">
+		</div>
+
+		<div class=" cart all classic all_nextfacturers  another new big_price ">
+		<!-- <img title='delete' align="right"> -->
+			<img class="cart_img_prev" src="icons/2.jpg">
+			<h4>The Great Gatsby</h4>
+			<p class="lastname"> <b>Френсіс Скотт Кей Фіцджеральд</b></p>
+			<p class="short_description">
+				Official Film Edition including an interview with Baz Luhrmann
+                Jay Gatsby’s parties are legendary. Night and day, the rich and beautiful descend upon his mansion to drink and to dance. For Nick Carraway, newly arrived on Long Island, the handsome, wealthy Gatsby seems to lead the perfect life. But beneath that shimmering facade Gatsby harbours an obsessive desire for the only thing he truly wants, but can never have.
+			</p>
+			<p class="country">Мова видання: <b>Англійська</b></p>
+			<p class="binding">Палітурка: <b>М'яка</b></p>
+			<p class="group">Рік видання: <b>2017</b></p>
+			<p class="pages">Кількість сторінок: <b>160</b></p>
+			<p class="price">Ціна: <b>418 </b></p>
+		<img title='delete' align="right">
+			
+		</div>
+
+			<div class=" cart all classic all_nextfacturers  ukr  new small_price">
+			<!-- <img title='delete' align="right"> -->
+			<img class="cart_img_prev" src="icons/3.jpg">
+			<h4>Гамлет, принц данський</h4>
+			<p class="lastname"> <b>Вільям Шекспір</b></p>
+			
+			<p class="short_description">
+				Трагедія «Гамлет, принц данський» Вільяма Шекспіра (1564—1616) — один із найвідоміших драматичних творів світової літератури. Навіть серед Шекспірових шедеврів «Гамлет» вирізняється винятковою глибиною, складністю змісту й проблематики. Сюжет трагедії сходить до давньоскандинавської саги про кровну помсту. Але в образі Гамлета перед нами постає не звичний персонаж-месник, а мислитель, нова людина, яка намагається осмислити свій час.
+			</p>
+			<p class="country">Мова видання: <b>Українська</b></p>
+			<p class="binding">Палітурка: <b>Тверда</b></p>
+			<p class="group">Рік видання: <b>2017 </b></p>
+			<p class="pages">Кількість сторінок: <b>207</b></p>
+			<p class="price">Ціна: <b>57 грн</b></p>
+			<img title='delete' align="right">
+		<!-- -->
+		</div>
+
+
+		<div class=" cart all prose all_nextfacturers  another light_price ">
+		<!-- <img title='delete' align="right"> -->
+		<img class="cart_img_prev" src="icons/4.jpg">
+			<h4>Империя ангелов</h4>
+			<p class="lastname"> <b>Бернар Вербер</b></p>
+			
+			<p class="short_description">
+				 Мировой бестселлер! 
+                 На счету писателя семь романов, ставших бестселлерами в Европе, Америке и Японии. 
+                 "Империя ангелов" - одна из самых нашумевших книг французского писателя. Суммарный мировой тираж его книг - более 10 миллионов!
+			</p>
+
+			<p class="country">Мова видання: <b>Російська</b></p>
+			<p class="binding">Палітурка: <b>М'яка</b></p>
+			<p class="group">Рік видання: <b>2016</b></p>
+			<p class="pages">Кількість сторінок: <b>448 </b></p>
+			<p class="price">Ціна: <b>150 грн</b></p>
+			<img title='delete' align="right">
+			
+		</div>
+
+		<div class=" cart all prose all_nextfacturers ukr light_price ">
+		<!-- <img title='delete' align="right"> -->
+		<img class="cart_img_prev" src="icons/5.jpg">
+			<h4>Емма мовчить</h4>
+			<p class="lastname"> <b>Сюзанна Шолль</b></p>
+		
+		
+			<p class="short_description">
+				Зустріч двох жінок, двох культур і двох доль, настільки відмінних, що й уявити собі годі: Емма з Відня та Зарема з Грозного. Одна – бабуся з дрібними, часто навіть дрібʼязковими повсякденними клопотами, друга – мати, яка бореться за гідне життя для себе і свого сина. Ця історія дозволяє нам уважніше поглянути туди, де наш світ змінюється. Емма – віденська пенсіонерка – переймається тим, що світ більше не такий, як раніше: її нова невістка-туркеня вагітна, онука Луці носить надто вузькі штани.
+			</p>
+			<p class="country">Мова видання: <b>Українська</b></p>
+			<p class="binding">Палітурка: <b>Тверда</b></p>
+			<p class="group">Рік видання: <b>2016</b></p>
+			<p class="pages">Кількість сторінок: <b>176</b></p>
+			<p class="price">Ціна: <b>154 грн</b></p>
+			<img title='delete' align="right">
+			
+		</div>
+
+	<div class=" cart all prose all_nextfacturers  another new light_price ">
+	<!-- <img title='delete' align="right"> -->
+		<img class="cart_img_prev" src="icons/6.jpg">
+			<h4>It's Ok, I'm Wearing Really Big Knickers</h4>
+		<p class="lastname"> <b>Луис Реннисон</b></p>
+			
+			<p class="short_description">
+				What is the matter with my life? Why is it so deeply unfab? 
+                Lt's a day and a half now since I snogged the Sex God... 
+                I think I have snog withdrawal. My lips keep puckering up... 
+                I tried snogging the back of my hand, but it's no good...
+			</p>
+			<p class="country">Мова видання: <b>Англійська</b></p>
+			<p class="binding">Палітурка: <b>М'яка</b></p>
+			<p class="group">Рік видання: <b>2017</b></p>
+			<p class="pages">Кількість сторінок: <b>256</b></p>
+			<p class="price">Ціна: <b>150 грн</b></p>
+	<img title='delete' align="right">
+		</div>
+
+<div class=" cart all detective all_nextfacturers  another new upper_price ">
+<!-- <img title='delete' align="right"> -->
+			<img class="cart_img_prev" src="icons/7.jpg">
+			<h4>Silent Scream</h4>
+		<p class="lastname"> <b>Karen Rose</b></p>
+			<p class="short_description">
+				The brilliant new novel from the incomparable Karen Rose, in which an arson leads to murder and blackmail, and David Hunter, who first appeared in Karen's first book DON'T TELL, leads a desperate search for those responsible.
+			</p>
+
+			<p class="country">Мова видання: <b>Англійська</b></p>
+			<p class="binding">Палітурка: <b>Тверда</b></p>
+			<p class="group">Рік видання: <b>2017</b></p>
+			<p class="pages">Кількість сторінок: <b>154</b></p>
+			<p class="price">Ціна: <b>370 грн</b></p>
+			<img title='delete' align="right">
+		</div>
+
+	<div class=" cart all detective all_nextfacturers  another medium_price ">
+	<!-- <img title='delete' align="right"> -->
+			<img class="cart_img_prev" src="icons/8.jpg">
+			<h4>Девушка, которая застряла в паутине</h4>
+			<p class="lastname"> <b>Давид Лагеркранц</b></p>
+	
+			<p class="short_description">
+				Очень хорошо. Очень хорошо, что последний недописанный роман Стига Ларссона стал доступен читателям. Еще в 2011 году гражданская жена Стига заявила, что готова закончить роман мужа. Однако понадобилось 4 года, чтобы продолжение трилогии наконец вышло в свет. Честь завершить труд Ларссона выпала известному шведскому писателю и журналисту Давиду Лагеркранцу. 
+                Новые времена настали в жизни Лисбет Саландер и Микаэля Блумквиста. Каждый из героев занят своими проблемами. 
+			</p>
+
+			<p class="country">Мова видання: <b>Російська</b></p>
+			<p class="binding">Палітурка: <b>Тверда</b></p>
+			<p class="group">Рік видання: <b>2015</b></p>
+			<p class="pages">Кількість сторінок: <b>480</b></p>
+			<p class="price">Ціна: <b>245 грн</b></p>
+		<img title='delete' align="right">
+		</div>
+
+			<div class=" cart all fantasy all_nextfacturers  another new light_price">
+			<!-- <img title='delete' align="right"> -->
+			<img class="cart_img_prev" src="icons/9.jpg">
+			<h4>Зеленая миля</h4>
+			<p class="lastname"> <b>Стивен Кинг</b></p>
+			<p class="short_description">
+				Стивен Кинг приглашает читателей в жуткий мир тюремного блока смертников, откуда уходят, чтобы не вернуться, приоткрывает дверь последнего пристанища тех, кто преступил не только человеческий, но и Божий закон.
+                По эту сторону электрического стула нет более смертоносного местечка! Ничто из того, что вы читали раньше, не сравнится с самым дерзким из ужасных опытов - с историей, что начинается на Дороге Смерти и уходит в глубины самых чудовищных тайн человеческой души...
+			</p>
+
+			<p class="country">Мова видання: <b>Росіська</b></p>
+			<p class="binding">Палітурка: <b>Тверда</b></p>
+			<p class="group">Рік видання: <b>2017</b></p>
+			<p class="pages">Кількість сторінок: <b>384</b></p>
+			<p class="price">Ціна: <b>176 грн</b></p>
+			<img title='delete' align="right">
+		</div>
+	<div class=" cart all fantasy all_nextfacturers  another  light_price">
+	<!-- <img title='delete' align="right"> -->
+			<img class="cart_img_prev" src="icons/10.jpg">
+			<h4>Дом странных детей</h4>
+			<p class="lastname"> <b>Ренсон Риггз</b></p>
+		
+			<p class="short_description">
+				«Дом странных детей» Ренсома Риггза стал сенсацией и разошелся миллионными тиражами! Таинственный остров. Покинутый приют. После ужасной семейной трагедии Джейкоб оказался в этом загадочном месте. Подросток нашел руины старого дома и выяснил, что здесь жили очень странные дети. Он начинает понимать, что на этом уединенном острове дети оказались неслучайно — их способности были поистине невероятными и опасными! 
+			</p>
+
+			<p class="country">Мова видання: <b>Російська</b></p>
+			<p class="binding">Палітурка: <b>Тверда</b></p>
+			<p class="group">Рік видання: <b>2016</b></p>
+			<p class="pages">Кількість сторінок: <b>432</b></p>
+			<p class="price">Ціна: <b>154 грн</b></p>
+		<img title='delete' align="right">
+		</div>
+        
+
+<div class=" cart all fantasy all_nextfacturers  another  medium_price">
+<!-- <img title='delete' align="right"> -->
+			<img class="cart_img_prev" src="icons/11.jpg">
+			<h4>Эхо</h4>
+			<p class="lastname"> <b>Джек Макдевит</b></p>
+			
+			<p class="short_description">
+				Ничто не предвещало подвоха. Самая обычная сделка: Алекс Бенедикт, удачливый торговец космическим антиквариатом, договаривается о покупке каменной плиты, найденной на разрушенном астероиде, с надписью на незнакомом языке. Однако оказывается, что получить ее у владельцев совсем не просто. Кто-то упорно противодействует планам Алекса и готов пойти на все вплоть до убийства, лишь бы таинственный артефакт никому не попался на глаза. 
+			</p>
+
+			<p class="country">Мова видання: <b>Російська</b></p>
+			<p class="binding">Палітурка: <b>Тверда</b></p>
+			<p class="group">Рік видання: <b>2016</b></p>
+			<p class="pages">Кількість сторінок: <b>384</b></p>
+			<p class="price">Ціна: <b>284 грн</b></p>
+			<img title='delete' align="right">
+		</div>
+        
+
+		<div class=" all novel cart all stringed all_nextfacturers ukr light_price">
+		<!-- <img title='delete' align="right"> -->
+			<img class="cart_img_prev" src="icons/12.jpg">
+			<h4>Коли повертається веселка</h4>
+			<p class="lastname"> <b>Анастасія Вінникт</b></p>
+			<p class="short_description">
+				Доля подарувала Тані зустріч із Ромою. Він дивився на неї так, як ніхто досі... Роман приїхав до батьків із Києва, де навчався на юридичному. Таня саме закінчувала школу. Це мало бути кохання всього її життя, але хлопець раптово зник... Минуло близько двадцяти років. Таня - відома журналістка, у неї дорослий син. Він - єдина згадка про коханого, якого вона так і не змогла забути. Діагноз лікарів залишає Тані обмаль часу, і саме він спонукає якнайшвидше знайти Рому!
+			</p>
+			<p class="country">Мова видання: <b>Українська</b></p>
+			<p class="binding">Палітурка: <b>Тверда</b></p>
+			<p class="group">Рік видання: <b>2016</b></p>
+			<p class="pages">Кількість сторінок: <b>240</b></p>
+			<p class="price">Ціна: <b>150 грн</b></p>
+			<img title='delete' align="right">
+		</div>
+
+	</div>
+</div>
+</div>
+</div>
+<div id="block-for-down">
+        <div id="viewport">
+         <p class="block-for-down">
+        Якщо у Вас залишились питання, можете нам зателефонувати:
+        +3(044)777-77-777.
+         Також можете надіслати листа:
+    		<a href="https://mail.google.com" id='send_mail'>victorykm23@gmail.com</a>
+
+		
+         <img src = "icons/bookdown1111.jpg" align="right" width = "290"  height="150">
+				<h2 style="color:#800000" align="center"><pre> <i>  <q>Первая, ударившая по сердцу книга, — что первая любовь.
+Это приз­ма, через которую впоследствии переломится бессознательно все ми­роощущение человека!</q>
+                                                                               О. Форш  </i></pre></h2>
+
+	
+           
+        </div>
+    </div>
+
+
+
+<script type="text/javascript">
+	
+
+$(document).ready(function() {
+	$('.cart img[title=delete]').css('display', 'none');
+
+
+// Пошук по словам
+
+
+	jQuery(document).ready(function(){
+ var minlen = 3; // минимальная длина слова
+ var paddingtop = 30; // отступ сверху при прокрутке
+ var scrollspeed = 200; // время прокрутки
+ var keyint = 1000; // интервал между нажатиями клавиш
+ var term = '';
+ var n = 0;
+ var time_keyup = 0;
+ var time_search = 0;
+ 
+ jQuery('body').delegate('#spgo', 'click', function(){
+  jQuery('body,html').animate({scrollTop: jQuery('span.highlight:first').offset().top-paddingtop}, scrollspeed); // переход к первому фрагменту
+ });
+ 
+ function dosearch() {
+  term = jQuery('#spterm').val();
+  jQuery('span.highlight').each(function(){ //удаляем старую подсветку
+   jQuery(this).after(jQuery(this).html()).remove();  
+  });
+  var t = '';
+  jQuery('div#content').each(function(){ // в селекторе задаем область поиска
+   jQuery(this).html(jQuery(this).html().replace(new RegExp(term, 'ig'), '<span class="highlight">$&</span>')); // выделяем найденные фрагменты
+   n = jQuery('span.highlight').length; // количество найденных фрагментов
+   console.log('n = '+n);
+   if (n==0)
+    jQuery('#spresult').html('Нічого не знайдено');
+   else
+    jQuery('#spresult').html('Результатів: '+n+'. <span class="splink" id="spgo">Перейти</span>'); 
+   if (n>1) // если больше одного фрагмента, то добавляем переход между ними
+   {
+    var i = 0;
+    jQuery('span.highlight').each(function(i){
+     jQuery(this).attr('n', i++); // нумеруем фрагменты, более простого способа искать следующий элемент не нашел
+    });
+    jQuery('span.highlight').not(':last').attr({title: 'Перейти до наступного фрагменту'}).click(function(){ // всем фрагментам, кроме последнего, добавляем подсказку
+     jQuery('body,html').animate({scrollTop: jQuery('span.highlight:gt('+jQuery(this).attr('n')+'):first').offset().top-paddingtop}, scrollspeed); // переход к следующему фрагменту
+    });
+    jQuery('span.highlight:last').attr({title: 'Повернутись до форми пошуку'}).click(function(){
+     jQuery('body,html').animate({scrollTop: jQuery('#spterm').offset().top-paddingtop}, scrollspeed); // переход к форме поиска
+    });
+   } 
+  });
+ }
+
+ jQuery('#spterm').keyup(function(){
+  var d1 = new Date();
+  time_keyup = d1.getTime();
+  if (jQuery('#spterm').val()!=term) // проверяем, изменилась ли строка
+   if (jQuery('#spterm').val().length>=minlen) { // проверяем длину строки
+    setTimeout(function(){ // ждем следующего нажатия
+     var d2 = new Date();
+     time_search = d2.getTime();
+     if (time_search-time_keyup>=keyint) // проверяем интервал между нажатиями
+      dosearch(); // если все в порядке, приступаем к поиску
+    }, keyint); 
+   }
+   else
+    jQuery('#spresult').html('&nbsp'); // если строка короткая, убираем текст из DIVа с результатом 
+ });	
+ 
+ if (window.location.hash!="") // бонус
+ {
+  var t = window.location.hash.substr(1, 50); // вырезаем текст
+  jQuery('#spterm').val(t).keyup(); // вставляем его в форму поиска
+  jQuery('#spgo').click(); // переходим к первому фрагменту
+ } 
+});
+
+//Фільтрація
+
+	function currentNextfacturers(){
+		selectionFactur = '';
+		a = $('.currentFactur').length;
+    		for ( var i = -a;  -a <= i <= a  ; ) {
+				selectionFactur = selectionFactur + '.' + $('.currentFactur').eq(i).attr("rel");
+				i++;
+				if ( ( i > a ) || ( i < -a ) ) break;
+				selectionFactur = selectionFactur + ', ' + newSelection;
+    		};
+	    return selectionFactur;
+	};
+
+	var newSelection = "";
+	var selectionFactur = "";
+	var selectionTotal = '';
+
+	$("#flavor-nav a, #nextfacturers a").on('click', function(){
+
+		var metod = $('#metod').prop('value');
+		var speed = $('#speed').prop('value');
+		var a;
+		if((speed !== 'slow') && (speed !== 'fast')){speed = parseInt(speed);};
+
+	    $("#all-flavors").fadeTo(300, 0.10);
+
+	    if ($(this).is("#flavor-nav a")){
+
+	    	$("#flavor-nav a").removeClass("current");
+			$(this).addClass("current");
+			newSelection = "." + $(this).attr("rel");
+			currentNextfacturers();
+
+	    } else if( $(this).is("#nextfacturers a") ){
+	    	
+	    	if( $(this).is('#nextfacturers a:first')){
+	    		$("#nextfacturers a").removeClass("currentFactur");
+				$(this).addClass("currentFactur");
+				selectionFactur = '.' + $(this).attr("rel");
+	    	} else {
+		    	$('#nextfacturers a:first').removeClass("currentFactur");
+		    	$(this).toggleClass("currentFactur");
+
+		    	if( $(this).is(".currentFactur") ){
+		    		currentNextfacturers();
+		    	} else {
+		    		a = $('.currentFactur').length;
+		    		if( a == 0 ){
+		    			$("#nextfacturers a:first").addClass("currentFactur");
+		    			selectionFactur = '.' + $("#nextfacturers a:first").attr("rel");
+		    		} else {
+		    			currentNextfacturers();
+		    		};
+		    	};
+	    	};
+	    };
+
+	    // переключення швидкості слайдів
+
+	    if (metod=='slide'){
+			$("#all-flavors div").not(newSelection + selectionFactur).slideUp( speed );
+			$(newSelection + selectionFactur).slideDown( speed );
+		} else if (metod=='hide'){
+			$("#all-flavors div").not(newSelection + selectionFactur).hide( speed );
+			$(newSelection + selectionFactur).show( speed );
+		} else if (metod=='fade'){
+			$("#all-flavors div").not(newSelection + selectionFactur).fadeOut( speed );
+			$(newSelection + selectionFactur).fadeIn( speed );
+		};	
+
+			$("#all-flavors").fadeTo(800, 1);
+			
+	});
+
+
+// корзина
+
+	var total_items = 0;
+	var total_price = 0;
+	var price = 0;
+	
+    $( ".cart" ).draggable({
+      helper: "clone",
+      scroll: false
+    });
+    $( "#basket" ).accordion({
+    	heightStyle: "content",
+    	active: false,
+    	collapsible: true,
+    	beforeActivate: function(event, ui){
+			if( $(this).width() < 250 ){
+				$(this).animate({
+					'width': '300px',
+
+					'background-color': 'rgba(255,255,255, 1)',
+					'z-index': '4443'
+				}, 400);
+			} else {
+				$(this).animate({
+					'width': '14%',
+					'background-color': 'rgba(255,255,255, 0.8)'
+				}, 400);
+			}
+    	}
+    }).droppable({
+      activeClass: "ui-state-default",
+      hoverClass: "ui-state-hover",
+      accept: ":not(.ui-sortable-helper)",
+      tolerance: 'pointer',
+      drop: function( event, ui ) {
+        $( this ).find( ".placeholder" ).remove();
+
+      
+        $( "<li></li>" ).text( ui.draggable.find('h4').text() )
+        	.append( $("#all-flavors div:first img[title=delete]").clone(true).addClass('basket_elements').css('display', 'inline') )
+        	.append('<span class="basket_elements"> ' + ui.draggable.find('b').text() + '</span> ' )
+        	.append('<span class="basket_elements"> ' +ui.draggable.find('h5').text() + '</span> ' )
+        .appendTo( '#basket div ol' );
+    
+   // загальна кількість у кошику
+		total_items++;
+		$("#citem").html(total_items);
+        price = parseInt(ui.draggable.find('b').text().replace(" $", ""));
+		total_price = total_price + price;
+		$("#order_price b").html(total_price + " $");
+
+     }
+    }).sortable({
+      items: "li:not(.placeholder)",
+      sort: function() {
+       
+        $( this ).removeClass( "ui-state-default" );
+      }
+    });
+
+
+//прокрутка кошика
+
+	var $basket = $("#basket");
+    $(window).on('scroll', function(){
+        if ( $(this).scrollTop() > 169 && ( $basket.hasClass("default") || $basket.hasClass("default_adm") ) ){
+            $basket.removeClass("default default_adm").addClass("fixed");
+        } else if( $(this).scrollTop() <= 169 && $basket.hasClass("fixed") && ( $('#admin').css('display') == 'block' ) ){
+        	$basket.removeClass("fixed").addClass("default_adm");
+        }
+
+        else if( $(this).scrollTop() <= 169 && $basket.hasClass("fixed")) {
+            $basket.removeClass("fixed").addClass("default");
+        }
+    });
+
+	// видалення товару
+	$("img[title='delete']").attr({
+			"src": function() {return "icons/" + this.title + ".png";},
+		})
+		.on('click',
+			function(){
+
+				if($(this).is("#basket div ol li img")){
+					total_items--;
+					$("#citem").html(total_items);
+					price = parseInt( $(this).siblings('span').text().replace(" $", "") );
+					total_price = total_price - price;
+					$("#order_price b").html(total_price + " $");
+					$(this).parent().fadeOut(function(){$(this).remove()});
+				} else if ($(this).is("#all-flavors .cart img")){$(this).parent('div').hide(function(){$(this).remove()});}
+			});
+
+//модальне вікно
+
+	$().addClass('modal');
+	var new_slide;
+	var new_cart;
+	var review;
+
+	function modal(review){
+		var winH = $(window).height();
+		var winW = $(window).width();
+		
+		$('#overlay').prepend( review.addClass('cart_review').css('display', 'block'));
+		$('body').css('overflow', 'hidden');
+    	$('#overlay').fadeIn(400);
+    	
+    	$('.cart_review').css({
+    				left: winW/2-$(review).width()/2});
+    	$(review).css({opacity: 1, top: function(){
+    					   	if( $(review).height() >= winH ){
+    					   		return "0px";
+    					   	} else {
+    					   		return winH/2-$(review).height()/2;}
+    					   	}, margin: '20px auto'
+    					});  
+	};
+	
+// створення нових карток та слайдів
+    $('.cart_img_prev, #add_cart_button, #add_slide_button, #enter_button, #order').on('click', function() {
+    	
+		if( $(this).is(".cart_img_prev") ){
+			review = $(this).parent('div').clone(true);
+			review.find('p').removeClass('short_description');
+			review.find('img:first').removeClass('cart_img_prev');
+		} else if( $(this).is("#add_slide_button") ) {
+			review = $('#slide_create').clone(true); 	
+
+			review.find('#file').change(function() {
+				var value = $(this).val();
+				new_slide = $('.slider-block:last').clone(true);
+    			new_slide.attr("id", function(){
+    				return value;
+    			}).css({'background-image': slider_block_bg});
+    		});
+		} else if( $(this).is("#enter_button") ) {
+			review = $('#enter_form').clone(true); 	
+		
+	// Створення нової картки
+		} else if( $(this).is('#add_cart_button') ){
+			review = $('#cart_create').clone(true);
+			new_cart = $('#all-flavors div:last').clone(true);
+
+			review.find(' input[name="product_group"] ').on('change', function() {
+    			new_cart.addClass( $(this).val() );
+    		});
+
+			review.find(' input[name="product_image"] ').on('change', function() {
+    			new_cart.find('.cart_img_prev').attr({'src': 'images/' + $(this).val() });
+    		});
+
+    		review.find(' input[name="product_name"] ').on('change', function() {
+    			new_cart.find('h4').text( $(this).val() );
+    		});
+    		review.find(' input[name="product_lastname"] ').on('change', function() {
+    			new_cart.find('.lastname').text( $(this).val() );
+    		});
+
+
+    		review.find(' textarea[name="product_description"] ').on('change', function() {
+    			new_cart.find('.short_description').text( $(this).val() );
+    		});
+
+    		review.find(' textarea[name="product_country"] ').on('change', function() {
+    			new_cart.find('.country').text( $(this).val() );
+    		});
+
+            review.find(' textarea[name="product_binding"] ').on('change', function() {
+    			new_cart.find('.binding ').text( $(this).val() );
+    		});
+
+            review.find(' textarea[name="product_group"] ').on('change', function() {
+    			new_cart.find('.group ').text( $(this).val() );
+    		});
+
+            review.find(' textarea[name="product_pages"] ').on('change', function() {
+    			new_cart.find('.pages ').text( $(this).val() );
+    		});
+    		review.find(' input[name="product_price"] ').on('change', function() {
+    			new_cart.find('.price b').text( $(this).val() );
+    		});
+    	} else if( $(this).is("#order") ){
+    		review = $('#mail').clone(true);
+    		review.find(' input[name="email"] ').on('change', function() {
+    			review.find('#send_mail').attr('href', "mailto:" + $(this).val() );
+    		});
+    	}
+	
+	   modal(review);  
+    });
+
+    $('#add_cart').on('click', function(){
+    	$("#all-flavors").prepend(new_cart);
+    });
+
+
+/* Закриття модального вікна */
+	function modal_close(){
+	    $('.cart_review').animate({opacity: 0, top: '5%'}, 400,  
+            function(){
+                $(this).remove();
+                $('#overlay').fadeOut(200); 
+                $('body').css('overflow', 'auto');
+            });
+	};
+	    $('#overlay_bg, img[title="delete"]').on('click', modal_close);
+
+
+	
+// слайдер
+var slideNow = 1;
+var slideCount = $('#slidewrapper').children().length;
+var slideInterval = 3000;
+var navBtnId = 0;
+var translateWidth = 0;
+
+$(document).ready(function() {
+    var switchInterval = setInterval(nextSlide, slideInterval);
+
+    $('#viewport').hover(function() {
+        clearInterval(switchInterval);
+    }, function() {
+        switchInterval = setInterval(nextSlide, slideInterval);
+    });
+
+    $('#next-btn').click(function() {
+        nextSlide();
+    });
+
+    $('#prev-btn').click(function() {
+        prevSlide();
+    });
+
+    $('.slide-nav-btn').click(function() {
+        navBtnId = $(this).index();
+
+        if (navBtnId + 1 != slideNow) {
+            translateWidth = -$('#viewport').width() * (navBtnId);
+            $('#slidewrapper').css({
+                'transform': 'translate(' + translateWidth + 'px, 0)',
+                '-webkit-transform': 'translate(' + translateWidth + 'px, 0)',
+                '-ms-transform': 'translate(' + translateWidth + 'px, 0)',
+            });
+            slideNow = navBtnId + 1;
+        }
+    });
+});
+
+
+function nextSlide() {
+    if (slideNow == slideCount || slideNow <= 0 || slideNow > slideCount) {
+        $('#slidewrapper').css('transform', 'translate(0, 0)');
+        slideNow = 1;
+    } else {
+        translateWidth = -$('#viewport').width() * (slideNow);
+        $('#slidewrapper').css({
+            'transform': 'translate(' + translateWidth + 'px, 0)',
+            '-webkit-transform': 'translate(' + translateWidth + 'px, 0)',
+            '-ms-transform': 'translate(' + translateWidth + 'px, 0)',
+        });
+        slideNow++;
+    }
+}
+
+function prevSlide() {
+    if (slideNow == 1 || slideNow <= 0 || slideNow > slideCount) {
+        translateWidth = -$('#viewport').width() * (slideCount - 1);
+        $('#slidewrapper').css({
+            'transform': 'translate(' + translateWidth + 'px, 0)',
+            '-webkit-transform': 'translate(' + translateWidth + 'px, 0)',
+            '-ms-transform': 'translate(' + translateWidth + 'px, 0)',
+        });
+        slideNow = slideCount;
+    } else {
+        translateWidth = -$('#viewport').width() * (slideNow - 2);
+        $('#slidewrapper').css({
+            'transform': 'translate(' + translateWidth + 'px, 0)',
+            '-webkit-transform': 'translate(' + translateWidth + 'px, 0)',
+            '-ms-transform': 'translate(' + translateWidth + 'px, 0)',
+        });
+        slideNow--;
+    }
+}
+
+
+
+// додавання слайду -не працює
+
+    $('#add_slide').on('click', function(){
+    	$(".slider-blocks-container").append(new_slide);
+    	$('#pag').append('<span class="pag"></span>');
+    	slider_blocks_length = $(".slider-block").length;		
+    });
+
+// форма додавання товару
+
+	$( "form input, form textarea" ).on( "focusin", function(event) {
+ 		$( this ).css( "box-shadow", "none" );
+ 		$(this).parent('p').find('label').animate({"top":"4px"}, 400);
+ 		$(this).animate({"padding-left":""}, 400);
+	});
+
+	$( "form input, form textarea" ).on( "focusout", function() {
+		if( $(this).val() ){} else {
+	 		$( this ).css( "box-shadow", "" );
+	 		$(this).parent('p').find('label').animate({"top":"26px"}, 400);
+	 		if( $(this).is('form textarea') ){
+	 			$(this).animate({"padding-left":"85px"}, 400);
+	 		};
+ 		};
+ 	});
+
+	$('form').on('submit', function(e){
+		e.preventDefault();
+
+		if( $(this).is('#enter_form') ){
+			
+			var l = $('#login').val();
+			var p = $('#password').val();
+
+			$.getJSON('users.json', {}, function (json) {
+				var users = json.user.length;
+				for(var i = 0; i < users; i++ ){
+
+					if( l != json.user[i].username ) continue;
+
+					
+					if( p == json.user[i].password ){
+						if( json.user[i].username == 'admin'){
+							$('#admin, .cart img[title="delete"]').css('display', 'block');
+						};
+						modal_close();
+						break;
+					} else {
+							alert ( ' ');
+							break;
+					};
+					
+				};
+
+				if( i == users ) {
+						alert ( '');
+					};
+	
+			});
+		} else {
+			modal_close();
+		};
+		
+	});
+
+// авторизація
+	$('#enter_quick').on('click', function(){
+		$('#admin, .cart img[title="delete"]').css('display', 'block');
+		$basket.removeClass("default").addClass("default_adm");
+		modal_close();
+	});
+
+});
+
+</script>
+
+</body>
+</html>
