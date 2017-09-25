@@ -29,7 +29,6 @@
 
 /*пошук*/
 
-
 	span.highlight {
 background-color: #C6D9DB; cursor: pointer; }
 
@@ -38,11 +37,10 @@ color: #00ffff; cursor: pointer;
 
 }
 
-
 /*низ сайту*/
 .block-for-down {
 	width: 100%;
-	height: 150px;
+	height: 100px;
 	text-align: center;
 	
 	position: relative;
@@ -57,9 +55,9 @@ color: #00ffff; cursor: pointer;
 	}
 	/*загальний фон*/
 	.bg {
-		width: 100%;
+		width:100%;
 		min-height: 1040px;
-		background: url("icons/bookdown1.jpg") no-repeat;
+		background: url("icons/bookdown1.jpg") no-repeat fixed;
 		background-size: 100% auto;
 		position: relative;
 	}
@@ -84,7 +82,6 @@ color: #00ffff; cursor: pointer;
     #enter_form, #cart_create, #slide_create {
     	background-color: #ddd;
     }
-
 
 
 /*вигляд карток*/
@@ -201,7 +198,6 @@ color: #00ffff; cursor: pointer;
 
 /*корзина*/
 
-
     #basket h2 {
     	background: url(icons/cart.png) no-repeat 130px;
     	background-size: 60px 60px;
@@ -222,7 +218,7 @@ color: #00ffff; cursor: pointer;
 	    position: absolute;
 	    top: 20px;
 	    right: 36px;
-	    text-align: center
+	    text-align: center;
     }
 
     /*кнопка видалити*/
@@ -260,7 +256,6 @@ color: #00ffff; cursor: pointer;
 		height: 6em;
 		overflow: hidden;
 	}
-
 
 	/*вигляд картки*/
 	.cart_review {
@@ -304,8 +299,6 @@ color: #00ffff; cursor: pointer;
 		cursor:pointer;
 	}
 
-
-
 /*форма входу*/
    form label {
     	display: inline-block;
@@ -341,7 +334,6 @@ color: #00ffff; cursor: pointer;
 
   
 /*слайдер*/
-
 
 body {
     margin: 0;
@@ -445,11 +437,11 @@ body {
     width: 100%;
 }
 
+}
 
 	</style>
 
 </head>
-
 
 
 <body>
@@ -479,7 +471,6 @@ body {
         </div>
     </div>
 
- 
 
 <div id='overlay'>
 	<div id='overlay_bg'></div>
@@ -510,9 +501,6 @@ body {
 			<button id="add_slide_button" class="modal" value="">Добавити слайд</button>
 		</div>
 
-		
-
-
 <!-- для бокового фільтру -->
 <div id="nextfacturers" class="all_nextfacturers  ukr another new small_price light_price medium_price upper_price big_price ">
 		<a rel="all_nextfacturers" class="currentfactur">Параметри пошуку</a>
@@ -533,11 +521,7 @@ body {
 	   <li> <a rel="big_price">Від 401  і більше грн</li></a>
 		</ol>
 </div>
-
-
 	<button id="enter_button" class="modal" value="">Авторизація</button>
-
-
 
 <!-- основна фільтрація -->
 	<div id="flavor-nav" class="all classic prose detective fantasy novel">
@@ -614,26 +598,70 @@ body {
 					<label for="product_description">Короткий зміст: </label>
 					<textarea type="text" name="product_description" id='' value="" placeholder="Введіть текст..." /></textarea>
 				</p>
-				<p class="input_container">
+
+                    <p class="input_container">
+	        		<label for="product_country">Мова видання: </label>
+					<input type="product_country" name="product_country" id="" value="" />
+				</p>
+
+				<!-- <p class="input_container">
 					<label for="product_country">Мова видання: </label>
-					<input type="text" name="product_country" id="" value="" />
+ -->
+                        <!-- <select name="product_country" id="product_country ">
+						<option value="ukr">Українська</option>
+						<option value="another">Англійська</option>
+						<option value="another">Російська</option>
+						
+					</select> -->
+
+
 				</p>
 				<p class="input_container">
-					<label for="product_binding">Палітурка </label>
-					<input type="text" name="product_binding" id="" value="" />
+					<label for="product_binding">Палітурка: </label>
+					<input type="product_binding" name="product_binding" id="" value="" />
 				</p>
+
+
 				<p class="input_container">
-					<label for="product_group">Рік видання </label>
-					<input type="text" name="product_group" id="" value="" />
+					<label for="product_group">Рік видання: </label>
+					<input type="product_group" name="product_group" id="" value="" />
 				</p>
+
+					<!--  <select name="product_group" id=" ">
+						<option value="new">2017</option>
+                        <option value="old">2015</option>
+						<option value="old">2016</option>
+						<option value="old">2014</option>
+						<option value="old">2013</option>
+						<option value="old">2012</option>
+						<option value="old">2011</option>
+						<option value="old">2010</option>
+						<option value="old">2009</option>
+						<option value="old">Інший</option>
+						
+					</select> -->
+				<!-- </p> -->
+
 				<p class="input_container">
-					<label for="product_pages">Кількість сторінок </label>
-					<input type="text" name="product_pages" id="" value="" />
+					<label for="product_pages">Кількість сторінок: </label>
+					<input type="product_pages" name="product_pages" id="" value="" />
 				</p>
-				<p class="input_container">
-					<label for="product_price">Ціна: </label>
-					<input type="text" name="product_price" id="" value="" />
+
+                     <p class="input_container">
+	        		<label for="product_price">Ціна: </label>
+					<input type="product_price" name="product_price" id="" value="" />
 				</p>
+
+                       <!--  <select name="product_price" id=" ">
+						<option value="small_price">0-100 грн</option>
+                        <option value="light_price">101-200 грн</option>
+						<option value="medium_price">201-300 грн</option>
+						<option value="upper_price">301-400 грн</option>
+						<option value="big_price">Від 401  і більше грн</option>
+						
+					</select>
+
+				</p> -->
 
 	        	<p class="input_container">
 	        		<button type="submit" id='add_cart' value="" class="half_button">Добавити</button>
@@ -661,7 +689,6 @@ body {
 
 <!-- пошук -->
 
-
  <input id="spterm"  type="text" name="spterm" placeholder="Що знайти?"><br />
 <div id="spresult">&nbsp;</div>
     
@@ -675,14 +702,14 @@ body {
 			<!-- <img title='delete' align="right"> -->
 			<img class="cart_img_prev" src="icons/1.jpg" >
 			<h4>По цей бік раю</h4>
-			<p class="lastname"> <b>Френсіс Скотт Кей Фіцджеральд</b></p>
+			<p class="lastname">Френсіс Скотт Кей Фіцджеральд</p>
 			<p class="short_description">
 				“По цей бік раю” — перший великий твір. Чарівний юнак, сповнений світлих мрій і надій на блискучі перспективи на початку роману, втративши друзів на війні, зазнавши трагедії в коханні, лишившись без засобів до існування, опиняється “по цей бік раю” і намагається знайти свій шлях у житті. Це доля не тільки головного героя твору, але й самого автора і його покоління, обпаленого Першою світовою війною.
 			</p>
-			<p class="country">Мова видання: <b>Українська</b></p>
-			<p class="binding">Палітурка: <b>Тверда</b></p>
-			<p class="group">Рік видання: <b>2009</b></p>
-			<p class="pages">Кількість сторінок: <b>302</b></p>
+			<p class="country">Мова видання:Українська</p>
+			<p class="binding">Палітурка: Тверда</p>
+			<p class="group">Рік видання: 2009</p>
+			<p class="pages">Кількість сторінок: 302</p>
 			<p class="price">Ціна: <b>65 грн</b></p>
 			<img title='delete' align="right">
 		</div>
@@ -690,16 +717,17 @@ body {
 		<div class=" cart all classic all_nextfacturers  another new big_price ">
 		<!-- <img title='delete' align="right"> -->
 			<img class="cart_img_prev" src="icons/2.jpg">
-			<h4>The Great Gatsby</h4>
-			<p class="lastname"> <b>Френсіс Скотт Кей Фіцджеральд</b></p>
+
+			<h4> Gatsby</h4>
+			<p class="lastname"> Френсіс Скотт Кей Фіцджеральд</p>
 			<p class="short_description">
 				Official Film Edition including an interview with Baz Luhrmann
                 Jay Gatsby’s parties are legendary. Night and day, the rich and beautiful descend upon his mansion to drink and to dance. For Nick Carraway, newly arrived on Long Island, the handsome, wealthy Gatsby seems to lead the perfect life. But beneath that shimmering facade Gatsby harbours an obsessive desire for the only thing he truly wants, but can never have.
 			</p>
-			<p class="country">Мова видання: <b>Англійська</b></p>
-			<p class="binding">Палітурка: <b>М'яка</b></p>
-			<p class="group">Рік видання: <b>2017</b></p>
-			<p class="pages">Кількість сторінок: <b>160</b></p>
+			<p class="country">Мова видання: Англійська</p>
+			<p class="binding">Палітурка: М'яка</p>
+			<p class="group">Рік видання: 2017</p>
+			<p class="pages">Кількість сторінок: 160</p>
 			<p class="price">Ціна: <b>418 </b></p>
 		<img title='delete' align="right">
 			
@@ -709,15 +737,15 @@ body {
 			<!-- <img title='delete' align="right"> -->
 			<img class="cart_img_prev" src="icons/3.jpg">
 			<h4>Гамлет, принц данський</h4>
-			<p class="lastname"> <b>Вільям Шекспір</b></p>
+			<p class="lastname"> Вільям Шекспір</p>
 			
 			<p class="short_description">
 				Трагедія «Гамлет, принц данський» Вільяма Шекспіра (1564—1616) — один із найвідоміших драматичних творів світової літератури. Навіть серед Шекспірових шедеврів «Гамлет» вирізняється винятковою глибиною, складністю змісту й проблематики. Сюжет трагедії сходить до давньоскандинавської саги про кровну помсту. Але в образі Гамлета перед нами постає не звичний персонаж-месник, а мислитель, нова людина, яка намагається осмислити свій час.
 			</p>
-			<p class="country">Мова видання: <b>Українська</b></p>
-			<p class="binding">Палітурка: <b>Тверда</b></p>
-			<p class="group">Рік видання: <b>2017 </b></p>
-			<p class="pages">Кількість сторінок: <b>207</b></p>
+			<p class="country">Мова видання: Українська</p>
+			<p class="binding">Палітурка: Тверда</p>
+			<p class="group">Рік видання: 2017 </p>
+			<p class="pages">Кількість сторінок: 207</p>
 			<p class="price">Ціна: <b>57 грн</b></p>
 			<img title='delete' align="right">
 		<!-- -->
@@ -728,7 +756,7 @@ body {
 		<!-- <img title='delete' align="right"> -->
 		<img class="cart_img_prev" src="icons/4.jpg">
 			<h4>Империя ангелов</h4>
-			<p class="lastname"> <b>Бернар Вербер</b></p>
+			<p class="lastname">Бернар Вербер</p>
 			
 			<p class="short_description">
 				 Мировой бестселлер! 
@@ -736,10 +764,10 @@ body {
                  "Империя ангелов" - одна из самых нашумевших книг французского писателя. Суммарный мировой тираж его книг - более 10 миллионов!
 			</p>
 
-			<p class="country">Мова видання: <b>Російська</b></p>
-			<p class="binding">Палітурка: <b>М'яка</b></p>
-			<p class="group">Рік видання: <b>2016</b></p>
-			<p class="pages">Кількість сторінок: <b>448 </b></p>
+			<p class="country">Мова видання: Російська</p>
+			<p class="binding">Палітурка: М'яка</p>
+			<p class="group">Рік видання: 2016</p>
+			<p class="pages">Кількість сторінок: 448 </p>
 			<p class="price">Ціна: <b>150 грн</b></p>
 			<img title='delete' align="right">
 			
@@ -749,16 +777,16 @@ body {
 		<!-- <img title='delete' align="right"> -->
 		<img class="cart_img_prev" src="icons/5.jpg">
 			<h4>Емма мовчить</h4>
-			<p class="lastname"> <b>Сюзанна Шолль</b></p>
+			<p class="lastname">Сюзанна Шолль</p>
 		
 		
 			<p class="short_description">
 				Зустріч двох жінок, двох культур і двох доль, настільки відмінних, що й уявити собі годі: Емма з Відня та Зарема з Грозного. Одна – бабуся з дрібними, часто навіть дрібʼязковими повсякденними клопотами, друга – мати, яка бореться за гідне життя для себе і свого сина. Ця історія дозволяє нам уважніше поглянути туди, де наш світ змінюється. Емма – віденська пенсіонерка – переймається тим, що світ більше не такий, як раніше: її нова невістка-туркеня вагітна, онука Луці носить надто вузькі штани.
 			</p>
-			<p class="country">Мова видання: <b>Українська</b></p>
-			<p class="binding">Палітурка: <b>Тверда</b></p>
-			<p class="group">Рік видання: <b>2016</b></p>
-			<p class="pages">Кількість сторінок: <b>176</b></p>
+			<p class="country">Мова видання: Українська</p>
+			<p class="binding">Палітурка: Тверда</p>
+			<p class="group">Рік видання: 2016</p>
+			<p class="pages">Кількість сторінок: 176</p>
 			<p class="price">Ціна: <b>154 грн</b></p>
 			<img title='delete' align="right">
 			
@@ -768,7 +796,7 @@ body {
 	<!-- <img title='delete' align="right"> -->
 		<img class="cart_img_prev" src="icons/6.jpg">
 			<h4>It's Ok, I'm Wearing Really Big Knickers</h4>
-		<p class="lastname"> <b>Луис Реннисон</b></p>
+		<p class="lastname"> Луис Реннисон</p>
 			
 			<p class="short_description">
 				What is the matter with my life? Why is it so deeply unfab? 
@@ -776,10 +804,10 @@ body {
                 I think I have snog withdrawal. My lips keep puckering up... 
                 I tried snogging the back of my hand, but it's no good...
 			</p>
-			<p class="country">Мова видання: <b>Англійська</b></p>
-			<p class="binding">Палітурка: <b>М'яка</b></p>
-			<p class="group">Рік видання: <b>2017</b></p>
-			<p class="pages">Кількість сторінок: <b>256</b></p>
+			<p class="country">Мова видання: Англійська</p>
+			<p class="binding">Палітурка: М'яка</p>
+			<p class="group">Рік видання: 2017</p>
+			<p class="pages">Кількість сторінок: 256</p>
 			<p class="price">Ціна: <b>150 грн</b></p>
 	<img title='delete' align="right">
 		</div>
@@ -788,15 +816,15 @@ body {
 <!-- <img title='delete' align="right"> -->
 			<img class="cart_img_prev" src="icons/7.jpg">
 			<h4>Silent Scream</h4>
-		<p class="lastname"> <b>Karen Rose</b></p>
+		<p class="lastname"> Karen Rose</p>
 			<p class="short_description">
 				The brilliant new novel from the incomparable Karen Rose, in which an arson leads to murder and blackmail, and David Hunter, who first appeared in Karen's first book DON'T TELL, leads a desperate search for those responsible.
 			</p>
 
-			<p class="country">Мова видання: <b>Англійська</b></p>
-			<p class="binding">Палітурка: <b>Тверда</b></p>
-			<p class="group">Рік видання: <b>2017</b></p>
-			<p class="pages">Кількість сторінок: <b>154</b></p>
+			<p class="country">Мова видання: Англійська</p>
+			<p class="binding">Палітурка: Тверда</p>
+			<p class="group">Рік видання: 2017</p>
+			<p class="pages">Кількість сторінок:154</p>
 			<p class="price">Ціна: <b>370 грн</b></p>
 			<img title='delete' align="right">
 		</div>
@@ -805,17 +833,17 @@ body {
 	<!-- <img title='delete' align="right"> -->
 			<img class="cart_img_prev" src="icons/8.jpg">
 			<h4>Девушка, которая застряла в паутине</h4>
-			<p class="lastname"> <b>Давид Лагеркранц</b></p>
+			<p class="lastname"> Давид Лагеркранц</p>
 	
 			<p class="short_description">
 				Очень хорошо. Очень хорошо, что последний недописанный роман Стига Ларссона стал доступен читателям. Еще в 2011 году гражданская жена Стига заявила, что готова закончить роман мужа. Однако понадобилось 4 года, чтобы продолжение трилогии наконец вышло в свет. Честь завершить труд Ларссона выпала известному шведскому писателю и журналисту Давиду Лагеркранцу. 
                 Новые времена настали в жизни Лисбет Саландер и Микаэля Блумквиста. Каждый из героев занят своими проблемами. 
 			</p>
 
-			<p class="country">Мова видання: <b>Російська</b></p>
-			<p class="binding">Палітурка: <b>Тверда</b></p>
-			<p class="group">Рік видання: <b>2015</b></p>
-			<p class="pages">Кількість сторінок: <b>480</b></p>
+			<p class="country">Мова видання:Російська</p>
+			<p class="binding">Палітурка: Тверда</p>
+			<p class="group">Рік видання:2015</p>
+			<p class="pages">Кількість сторінок: 480</p>
 			<p class="price">Ціна: <b>245 грн</b></p>
 		<img title='delete' align="right">
 		</div>
@@ -824,16 +852,16 @@ body {
 			<!-- <img title='delete' align="right"> -->
 			<img class="cart_img_prev" src="icons/9.jpg">
 			<h4>Зеленая миля</h4>
-			<p class="lastname"> <b>Стивен Кинг</b></p>
+			<p class="lastname"> Стивен Кинг</p>
 			<p class="short_description">
 				Стивен Кинг приглашает читателей в жуткий мир тюремного блока смертников, откуда уходят, чтобы не вернуться, приоткрывает дверь последнего пристанища тех, кто преступил не только человеческий, но и Божий закон.
                 По эту сторону электрического стула нет более смертоносного местечка! Ничто из того, что вы читали раньше, не сравнится с самым дерзким из ужасных опытов - с историей, что начинается на Дороге Смерти и уходит в глубины самых чудовищных тайн человеческой души...
 			</p>
 
-			<p class="country">Мова видання: <b>Росіська</b></p>
-			<p class="binding">Палітурка: <b>Тверда</b></p>
-			<p class="group">Рік видання: <b>2017</b></p>
-			<p class="pages">Кількість сторінок: <b>384</b></p>
+			<p class="country">Мова видання: Росіська</p>
+			<p class="binding">Палітурка: Тверда</p>
+			<p class="group">Рік видання: 2017</p>
+			<p class="pages">Кількість сторінок: 384</p>
 			<p class="price">Ціна: <b>176 грн</b></p>
 			<img title='delete' align="right">
 		</div>
@@ -841,16 +869,16 @@ body {
 	<!-- <img title='delete' align="right"> -->
 			<img class="cart_img_prev" src="icons/10.jpg">
 			<h4>Дом странных детей</h4>
-			<p class="lastname"> <b>Ренсон Риггз</b></p>
+			<p class="lastname"> Ренсон Риггз</p>
 		
 			<p class="short_description">
 				«Дом странных детей» Ренсома Риггза стал сенсацией и разошелся миллионными тиражами! Таинственный остров. Покинутый приют. После ужасной семейной трагедии Джейкоб оказался в этом загадочном месте. Подросток нашел руины старого дома и выяснил, что здесь жили очень странные дети. Он начинает понимать, что на этом уединенном острове дети оказались неслучайно — их способности были поистине невероятными и опасными! 
 			</p>
 
-			<p class="country">Мова видання: <b>Російська</b></p>
-			<p class="binding">Палітурка: <b>Тверда</b></p>
-			<p class="group">Рік видання: <b>2016</b></p>
-			<p class="pages">Кількість сторінок: <b>432</b></p>
+			<p class="country">Мова видання: Російська</p>
+			<p class="binding">Палітурка: Тверда</p>
+			<p class="group">Рік видання: 2016</p>
+			<p class="pages">Кількість сторінок: 432</p>
 			<p class="price">Ціна: <b>154 грн</b></p>
 		<img title='delete' align="right">
 		</div>
@@ -860,16 +888,16 @@ body {
 <!-- <img title='delete' align="right"> -->
 			<img class="cart_img_prev" src="icons/11.jpg">
 			<h4>Эхо</h4>
-			<p class="lastname"> <b>Джек Макдевит</b></p>
+			<p class="lastname"> Джек Макдевит</p>
 			
 			<p class="short_description">
 				Ничто не предвещало подвоха. Самая обычная сделка: Алекс Бенедикт, удачливый торговец космическим антиквариатом, договаривается о покупке каменной плиты, найденной на разрушенном астероиде, с надписью на незнакомом языке. Однако оказывается, что получить ее у владельцев совсем не просто. Кто-то упорно противодействует планам Алекса и готов пойти на все вплоть до убийства, лишь бы таинственный артефакт никому не попался на глаза. 
 			</p>
 
-			<p class="country">Мова видання: <b>Російська</b></p>
-			<p class="binding">Палітурка: <b>Тверда</b></p>
-			<p class="group">Рік видання: <b>2016</b></p>
-			<p class="pages">Кількість сторінок: <b>384</b></p>
+			<p class="country">Мова видання: Російська</p>
+			<p class="binding">Палітурка: Тверда</p>
+			<p class="group">Рік видання: 2016</p>
+			<p class="pages">Кількість сторінок: 384</p>
 			<p class="price">Ціна: <b>284 грн</b></p>
 			<img title='delete' align="right">
 		</div>
@@ -879,14 +907,14 @@ body {
 		<!-- <img title='delete' align="right"> -->
 			<img class="cart_img_prev" src="icons/12.jpg">
 			<h4>Коли повертається веселка</h4>
-			<p class="lastname"> <b>Анастасія Вінникт</b></p>
+			<p class="lastname"> Анастасія Вінникт</p>
 			<p class="short_description">
 				Доля подарувала Тані зустріч із Ромою. Він дивився на неї так, як ніхто досі... Роман приїхав до батьків із Києва, де навчався на юридичному. Таня саме закінчувала школу. Це мало бути кохання всього її життя, але хлопець раптово зник... Минуло близько двадцяти років. Таня - відома журналістка, у неї дорослий син. Він - єдина згадка про коханого, якого вона так і не змогла забути. Діагноз лікарів залишає Тані обмаль часу, і саме він спонукає якнайшвидше знайти Рому!
 			</p>
-			<p class="country">Мова видання: <b>Українська</b></p>
-			<p class="binding">Палітурка: <b>Тверда</b></p>
-			<p class="group">Рік видання: <b>2016</b></p>
-			<p class="pages">Кількість сторінок: <b>240</b></p>
+			<p class="country">Мова видання: Українська</p>
+			<p class="binding">Палітурка: Тверда</p>
+			<p class="group">Рік видання: 2016</p>
+			<p class="pages">Кількість сторінок: 240</p>
 			<p class="price">Ціна: <b>150 грн</b></p>
 			<img title='delete' align="right">
 		</div>
@@ -894,27 +922,23 @@ body {
 	</div>
 </div>
 </div>
-</div>
+
 <div id="block-for-down">
         <div id="viewport">
          <p class="block-for-down">
+          <!-- <img src = "icons/bookdown1111.jpg" align="right" width = "290"  height="150"> -->
         Якщо у Вас залишились питання, можете нам зателефонувати:
         +3(044)777-77-777.
          Також можете надіслати листа:
-    		<a href="https://mail.google.com" id='send_mail'>victorykm23@gmail.com</a>
+    		<a href="https://mail.google.com" id='send_mail'>victorykm23@gmail.com</a></p>
 
-		
-         <img src = "icons/bookdown1111.jpg" align="right" width = "290"  height="150">
-				<h2 style="color:#800000" align="center"><pre> <i>  <q>Первая, ударившая по сердцу книга, — что первая любовь.
+<h2 style="color:#F4A460" align="center"><pre> <i>  <q>Первая, ударившая по сердцу книга, — что первая любовь.
 Это приз­ма, через которую впоследствии переломится бессознательно все ми­роощущение человека!</q>
-                                                                               О. Форш  </i></pre></h2>
-
-	
+                                                                               О. Форш  </i></pre></h2>	
            
         </div>
     </div>
-
-
+</div>
 
 <script type="text/javascript">
 	
@@ -994,6 +1018,7 @@ $(document).ready(function() {
  } 
 });
 
+
 //Фільтрація
 
 	function currentNextfacturers(){
@@ -1017,7 +1042,7 @@ $(document).ready(function() {
 		var metod = $('#metod').prop('value');
 		var speed = $('#speed').prop('value');
 		var a;
-		if((speed !== 'slow') && (speed !== 'fast')){speed = parseInt(speed);};
+		if((speed !== 'slow') && (speed !== 'slow')){speed = parseInt(speed);};
 
 	    $("#all-flavors").fadeTo(300, 0.10);
 
@@ -1052,7 +1077,7 @@ $(document).ready(function() {
 	    	};
 	    };
 
-	    // переключення швидкості слайдів
+	    // переключення швидкості 
 
 	    if (metod=='slide'){
 			$("#all-flavors div").not(newSelection + selectionFactur).slideUp( speed );
@@ -1070,7 +1095,7 @@ $(document).ready(function() {
 	});
 
 
-// корзина
+// кошик
 
 	var total_items = 0;
 	var total_price = 0;
@@ -1110,16 +1135,16 @@ $(document).ready(function() {
       
         $( "<li></li>" ).text( ui.draggable.find('h4').text() )
         	.append( $("#all-flavors div:first img[title=delete]").clone(true).addClass('basket_elements').css('display', 'inline') )
-        	.append('<span class="basket_elements"> ' + ui.draggable.find('b').text() + '</span> ' )
-        	.append('<span class="basket_elements"> ' +ui.draggable.find('h5').text() + '</span> ' )
+       
         .appendTo( '#basket div ol' );
     
    // загальна кількість у кошику
 		total_items++;
 		$("#citem").html(total_items);
-        price = parseInt(ui.draggable.find('b').text().replace(" $", ""));
+
+       price = parseInt(ui.draggable.find('b').text().replace(" грн", ""));
 		total_price = total_price + price;
-		$("#order_price b").html(total_price + " $");
+		$("#order_price b").html(total_price + " грн");
 
      }
     }).sortable({
@@ -1131,7 +1156,26 @@ $(document).ready(function() {
     });
 
 
-//прокрутка кошика
+	// видалення товару
+	$("img[title='delete']").attr({
+			"src": function() {return "icons/" + this.title + ".png";},
+		})
+		.on('click',
+			function(){
+
+				if($(this).is("#basket div ol li img")){
+					total_items--;
+					$("#citem").html(total_items);
+					price = parseInt( $(this).siblings('span').text().replace(" грн", "") );
+					total_price = total_price - price;
+					$("#order_price b").html(total_price + " грн");
+					$(this).parent().fadeOut(function(){$(this).remove()});
+				} else if ($(this).is("#all-flavors .cart img")){$(this).parent('div').hide(function(){$(this).remove()});
+			}
+			});
+
+
+		//прокрутка кошика
 
 	var $basket = $("#basket");
     $(window).on('scroll', function(){
@@ -1145,23 +1189,6 @@ $(document).ready(function() {
             $basket.removeClass("fixed").addClass("default");
         }
     });
-
-	// видалення товару
-	$("img[title='delete']").attr({
-			"src": function() {return "icons/" + this.title + ".png";},
-		})
-		.on('click',
-			function(){
-
-				if($(this).is("#basket div ol li img")){
-					total_items--;
-					$("#citem").html(total_items);
-					price = parseInt( $(this).siblings('span').text().replace(" $", "") );
-					total_price = total_price - price;
-					$("#order_price b").html(total_price + " $");
-					$(this).parent().fadeOut(function(){$(this).remove()});
-				} else if ($(this).is("#all-flavors .cart img")){$(this).parent('div').hide(function(){$(this).remove()});}
-			});
 
 //модальне вікно
 
@@ -1234,24 +1261,35 @@ $(document).ready(function() {
     			new_cart.find('.short_description').text( $(this).val() );
     		});
 
-    		review.find(' textarea[name="product_country"] ').on('change', function() {
+
+    		review.find(' input[name="product_country"] ').on('change', function() {
     			new_cart.find('.country').text( $(this).val() );
     		});
 
-            review.find(' textarea[name="product_binding"] ').on('change', function() {
+            review.find(' input[name="product_binding"] ').on('change', function() {
     			new_cart.find('.binding ').text( $(this).val() );
     		});
 
-            review.find(' textarea[name="product_group"] ').on('change', function() {
+            review.find(' input[name="product_group"] ').on('change', function() {
     			new_cart.find('.group ').text( $(this).val() );
+
     		});
 
-            review.find(' textarea[name="product_pages"] ').on('change', function() {
+
+            review.find(' input[name="product_pages"] ').on('change', function() {
     			new_cart.find('.pages ').text( $(this).val() );
     		});
+
     		review.find(' input[name="product_price"] ').on('change', function() {
     			new_cart.find('.price b').text( $(this).val() );
     		});
+
+
+    		//  review.find(' input[name="product_nextfacturer"] ').on('change', function() {
+    		// 	new_cart.find('h4').text( $(this).val() );
+    		// });
+
+
     	} else if( $(this).is("#order") ){
     		review = $('#mail').clone(true);
     		review.find(' input[name="email"] ').on('change', function() {
@@ -1277,7 +1315,6 @@ $(document).ready(function() {
             });
 	};
 	    $('#overlay_bg, img[title="delete"]').on('click', modal_close);
-
 
 	
 // слайдер
@@ -1356,11 +1393,11 @@ function prevSlide() {
 }
 
 
-
-// додавання слайду -не працює
+// додавання слайду 
 
     $('#add_slide').on('click', function(){
-    	$(".slider-blocks-container").append(new_slide);
+
+    	$(".block-for-slider").append(new_slide);
     	$('#pag').append('<span class="pag"></span>');
     	slider_blocks_length = $(".slider-block").length;		
     });
